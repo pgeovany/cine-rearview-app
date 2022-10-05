@@ -55,12 +55,21 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
+    a {
+        text-decoration: none;
+
+        &&:hover {
+            cursor: pointer;
+        }
+    }
+
     :root {
         width: 100vw;
         height: 100vh;
+        background-color: #202124;
     }
 
     button {
-        cursor: pointer;    
+        cursor: pointer;
     }
 `;
