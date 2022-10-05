@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import Form from '../../styles/auth/Form';
 import Input from '../../styles/auth/Input';
@@ -9,10 +11,39 @@ export default function SignUpForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [disableButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
+  const navigate = useNavigate();
+
+  async function signUp(e) {
+    e.preventDefault();
+    setDisableButton(true);
+
+    if (password !== confirmPassword) {
+      setDisableButton(false);
+      alert('The passwords do not match!');
+      return;
+    }
+
+    const body = {
+      username,
+      email: email.toLowerCase(),
+      password,
+      confirmPassword,
+    };
+
+    const { VITE_API_URL } = import.meta.env;
+
+    try {
+      await axios.post(`${VITE_API_URL}/auth/sign-up`, body);
+      navigate('/search');
+    } catch (error) {
+      setDisableButton(false);
+      alert(error?.response?.data);
+    }
+  }
 
   return (
-    <Form>
+    <Form onSubmit={signUp}>
       <label htmlFor="username">Username</label>
       <Input
         id="username"
