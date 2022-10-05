@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
+import useAuth from '../../hooks/useAuth';
 import Form from '../../styles/auth/Form';
 import Input from '../../styles/auth/Input';
 import Button from '../../styles/auth/Button';
@@ -7,10 +8,11 @@ import Button from '../../styles/auth/Button';
 export default function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [disableButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
+  const auth = useAuth();
 
   return (
-    <Form>
+    <Form onSubmit={(e) => auth.login(e, email, password, setDisableButton)}>
       <label htmlFor="email">E-mail</label>
       <Input
         id="email"
