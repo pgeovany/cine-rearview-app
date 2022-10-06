@@ -4,6 +4,10 @@ import RequireAuth from './components/RequireAuth/RequireAuth';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import Search from './pages/Search/Search';
+import Footer from './components/Footer/Footer';
+import UserList from './pages/UserList/UserList';
+import Watchlist from './pages/Watchlist/Watchlist';
+import Reviews from './pages/Reviews/Reviews';
 
 function App() {
   return (
@@ -20,7 +24,32 @@ function App() {
               </RequireAuth>
             }
           />
+          <Route
+            path="/my-list"
+            element={
+              <RequireAuth>
+                <UserList />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/watchlist"
+            element={
+              <RequireAuth>
+                <Watchlist />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/reviews"
+            element={
+              <RequireAuth>
+                <Reviews />
+              </RequireAuth>
+            }
+          />
         </Routes>
+        <Footer />
       </UserContextProvider>
     </BrowserRouter>
   );
