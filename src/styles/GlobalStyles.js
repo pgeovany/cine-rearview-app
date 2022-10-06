@@ -66,7 +66,7 @@ export default createGlobalStyle`
     :root {
         width: 100vw;
         height: 100vh;
-        background-color: #202124;
+        background-color: #141414;
     }
 
     button {
