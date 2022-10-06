@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
+import api from '../../services/api';
 import Form from '../../styles/auth/Form';
 import Input from '../../styles/auth/Input';
 import Button from '../../styles/auth/Button';
@@ -31,10 +31,8 @@ export default function SignUpForm() {
       confirmPassword,
     };
 
-    const { VITE_API_URL } = import.meta.env;
-
     try {
-      await axios.post(`${VITE_API_URL}/auth/sign-up`, body);
+      await api.post('/auth/sign-up', body);
       navigate('/search');
     } catch (error) {
       setDisableButton(false);

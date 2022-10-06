@@ -1,6 +1,6 @@
 import { createContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 
 export const UserContext = createContext(null);
 
@@ -15,8 +15,7 @@ export function UserContextProvider({ children }) {
     const body = { email, password };
 
     try {
-      const { VITE_API_URL } = import.meta.env;
-      const response = await axios.post(`${VITE_API_URL}/auth/sign-in`, body);
+      const response = await api.post('/auth/sign-in', body);
 
       setUserInfo(response.data);
       setIsAuthenticated(true);
