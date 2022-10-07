@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import UserList from './pages/UserList/UserList';
 import Watchlist from './pages/Watchlist/Watchlist';
 import Reviews from './pages/Reviews/Reviews';
+import FilmDetails from './pages/FilmDetails/FilmDetails';
 
 function App() {
   return (
@@ -45,6 +46,14 @@ function App() {
             element={
               <RequireAuth>
                 <Reviews />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/films/:id"
+            element={
+              <RequireAuth>
+                <FilmDetails />
               </RequireAuth>
             }
           />
