@@ -40,6 +40,29 @@ export default function FilmDetails() {
     fetchData();
   }, []);
 
+  async function addFilmToUserList() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo?.token || ''}`,
+      },
+    };
+
+    const body = {
+      originalId: film.originalId,
+      title: film.title,
+      overview: film.overview,
+      releaseDate: film.releaseDate,
+      posterUrl: film.poster,
+    };
+
+    try {
+      await api.post('/userlist', body, config);
+      alert('Added to your list!');
+    } catch (error) {
+      alert(error?.response?.data);
+    }
+  }
+
   function genDetailsPage() {
     if (film) {
       return (
@@ -52,7 +75,7 @@ export default function FilmDetails() {
               <h2>
                 DIRECTED BY <br />
                 <span>
-                  {film?.directors?.map((director) => director).join(',')}
+                  {film?.directors?.map((director) => director).join(', ')}
                 </span>
               </h2>
               <br />
@@ -72,7 +95,7 @@ export default function FilmDetails() {
           <HorizontalBorder />
           <br />
           <ButtonContainer>
-            <Button>Watched!</Button>
+            <Button onClick={addFilmToUserList}>Watched!</Button>
           </ButtonContainer>
         </>
       );
