@@ -28,4 +28,14 @@ const Main = styled.div`
   justify-content: space-around;
 `;
 
-export { Header, Main };
+const EmptyMessage = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+`;
+
+export { Header, Main, EmptyMessage };

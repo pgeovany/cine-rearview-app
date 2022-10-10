@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Header, Main } from './style';
+import { EmptyMessage, Header, Main } from './style';
 import FilmPoster from '../../components/FilmPoster/FilmPoster';
 import { UserContext } from '../../contexts/UserContext';
 import api from '../../services/api';
@@ -48,7 +48,7 @@ export default function UserList() {
   }
 
   function genUserList() {
-    if (films) {
+    if (films && films.length > 0) {
       return (
         <>
           <Header>{`My films (${films.length})`}</Header>
@@ -67,6 +67,20 @@ export default function UserList() {
         </>
       );
     }
+    if (films && films.length === 0) {
+      return (
+        <>
+          <Header>{`My films (${films.length})`}</Header>
+          <EmptyMessage>
+            <p>Oh, your list is empty :(</p>
+            <br />
+            <p>Go to the search page</p>
+            <p>and search for new films!</p>
+          </EmptyMessage>
+        </>
+      );
+    }
+
     return (
       <>
         <Header>Loading...</Header>
