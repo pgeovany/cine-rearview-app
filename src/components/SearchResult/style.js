@@ -12,6 +12,10 @@ const SearchResultContainer = styled.div`
     color: white;
     font-size: 18px;
   }
+
+  &&:hover {
+    cursor: pointer;
+  }
 `;
 
 const FilmPoster = styled.img`
