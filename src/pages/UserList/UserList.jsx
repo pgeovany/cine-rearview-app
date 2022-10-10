@@ -7,6 +7,7 @@ import api from '../../services/api';
 export default function UserList() {
   const [films, setFilms] = useState(null);
   const { userInfo } = useContext(UserContext);
+  const [updateList, setUpdateList] = useState(true);
 
   useEffect(() => {
     const config = {
@@ -25,7 +26,22 @@ export default function UserList() {
     }
 
     fetchData();
-  }, []);
+  }, [updateList]);
+
+  async function removeFilm(id) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo?.token || ''}`,
+      },
+    };
+
+    try {
+      await api.delete(`userlist/${id}`, config);
+      setUpdateList(!updateList);
+    } catch (error) {
+      alert(error?.response?.data);
+    }
+  }
 
   function genUserList() {
     if (userInfo && films) {
@@ -36,9 +52,11 @@ export default function UserList() {
             {films.map((film) => (
               <FilmPoster
                 key={film.id}
+                id={film.id}
                 originalId={film.originalId}
                 posterUrl={film.posterUrl}
                 title={film.title}
+                removeFilm={removeFilm}
               />
             ))}
           </Main>
