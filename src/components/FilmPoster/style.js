@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { Finger } from 'react-finger';
 
-const Poster = styled.div`
+const Poster = styled(Finger('div'))`
   display: flex;
   justify-content: center;
+  position: relative;
   align-items: center;
   width: 100px;
   height: 150px;
@@ -25,4 +27,18 @@ const Poster = styled.div`
   }
 `;
 
-export default Poster;
+const DeleteDiv = styled.div`
+  height: 26px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e01f36;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+`;
+
+export { Poster, DeleteDiv };
