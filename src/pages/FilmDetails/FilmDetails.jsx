@@ -32,6 +32,7 @@ export default function FilmDetails() {
           config
         );
         setFilm(data);
+        console.log(data);
       } catch (error) {
         console.log(error?.response?.data);
       }
@@ -82,6 +83,10 @@ export default function FilmDetails() {
               <h2>Release date: {film.releaseDate}</h2>
               <br />
               <h2>Runtime: {film.runtime} min</h2>
+              <br />
+              <h2>
+                Genres: {film?.genres?.map((genre) => genre.name).join(', ')}
+              </h2>
             </div>
           </Header>
           <br />
