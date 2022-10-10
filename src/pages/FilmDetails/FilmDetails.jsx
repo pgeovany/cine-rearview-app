@@ -12,6 +12,8 @@ import {
 } from './style';
 import { UserContext } from '../../contexts/UserContext';
 import api from '../../services/api';
+import successAlert from '../../utils/CustomAlerts/successAlert';
+import errorAlert from '../../utils/CustomAlerts/errorAlert';
 
 export default function FilmDetails() {
   const { state } = useLocation();
@@ -32,9 +34,8 @@ export default function FilmDetails() {
           config
         );
         setFilm(data);
-        console.log(data);
       } catch (error) {
-        console.log(error?.response?.data);
+        console.log(error?.response?.data); // eslint-disable-line
       }
     }
 
@@ -58,9 +59,10 @@ export default function FilmDetails() {
 
     try {
       await api.post(`${list}`, body, config);
-      alert('Added to your list!');
+      const listType = list === 'watchlist' ? 'watchlist' : 'list';
+      successAlert(`Film successfuly added to your ${listType}!`);
     } catch (error) {
-      alert(error?.response?.data);
+      errorAlert(error?.response?.data);
     }
   }
 

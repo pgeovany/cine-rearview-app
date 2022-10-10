@@ -3,6 +3,8 @@ import { Header, Main } from './style';
 import FilmPoster from '../../components/FilmPoster/FilmPoster';
 import { UserContext } from '../../contexts/UserContext';
 import api from '../../services/api';
+import errorAlert from '../../utils/CustomAlerts/errorAlert';
+import successAlert from '../../utils/CustomAlerts/successAlert';
 
 export default function UserList() {
   const [films, setFilms] = useState(null);
@@ -21,7 +23,7 @@ export default function UserList() {
         const { data } = await api.get('/userlist', config);
         setFilms(data);
       } catch (error) {
-        console.log(error?.response?.data);
+        console.log(error?.response?.data); // eslint-disable-line
       }
     }
 
@@ -38,8 +40,9 @@ export default function UserList() {
     try {
       await api.delete(`userlist/${id}`, config);
       setUpdateList(!updateList);
+      successAlert('Film successfully deleted from your list!');
     } catch (error) {
-      alert(error?.response?.data);
+      errorAlert(error?.response?.data);
     }
   }
 

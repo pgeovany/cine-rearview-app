@@ -3,6 +3,8 @@ import { Header, Main } from './style';
 import FilmPoster from '../../components/FilmPoster/FilmPoster';
 import { UserContext } from '../../contexts/UserContext';
 import api from '../../services/api';
+import errorAlert from '../../utils/CustomAlerts/errorAlert';
+import successAlert from '../../utils/CustomAlerts/successAlert';
 
 export default function Watchlist() {
   const [films, setFilms] = useState(null);
@@ -21,7 +23,7 @@ export default function Watchlist() {
         const { data } = await api.get('/watchlist', config);
         setFilms(data);
       } catch (error) {
-        console.log(error?.response?.data);
+        console.log(error?.response?.data); // eslint-disable-line
       }
     }
 
@@ -37,9 +39,10 @@ export default function Watchlist() {
 
     try {
       await api.delete(`watchlist/${id}`, config);
+      successAlert('Film successfully deleted from your watchlist!');
       setUpdateList(!updateList);
     } catch (error) {
-      alert(error?.response?.data);
+      errorAlert(error?.response?.data);
     }
   }
 

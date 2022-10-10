@@ -1,6 +1,7 @@
 import { createContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import errorAlert from '../utils/CustomAlerts/errorAlert';
 
 export const UserContext = createContext(null);
 
@@ -22,7 +23,7 @@ export function UserContextProvider({ children }) {
       navigate('/search', { replace: true });
     } catch (error) {
       disableInput(false);
-      alert(error?.response?.data);
+      errorAlert(error?.response?.data);
     }
   }
 

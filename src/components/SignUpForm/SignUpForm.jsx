@@ -5,6 +5,7 @@ import api from '../../services/api';
 import Form from '../../styles/auth/Form';
 import Input from '../../styles/auth/Input';
 import Button from '../../styles/auth/Button';
+import errorAlert from '../../utils/CustomAlerts/errorAlert';
 
 export default function SignUpForm() {
   const [username, setUsername] = useState('');
@@ -20,7 +21,7 @@ export default function SignUpForm() {
 
     if (password !== confirmPassword) {
       setDisableButton(false);
-      alert('The passwords do not match!');
+      errorAlert('The passwords do not match!');
       return;
     }
 
@@ -36,7 +37,7 @@ export default function SignUpForm() {
       navigate('/search');
     } catch (error) {
       setDisableButton(false);
-      alert(error?.response?.data);
+      errorAlert(error?.response?.data);
     }
   }
 

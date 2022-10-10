@@ -31,7 +31,7 @@ export default function Search() {
       const { data } = await api.get('/films/search', config);
       setFilms(data);
     } catch (error) {
-      console.log(error?.response?.data);
+      console.log(error?.response?.data); // eslint-disable-line
     }
   }
 
