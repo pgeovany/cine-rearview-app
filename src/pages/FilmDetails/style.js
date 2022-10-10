@@ -44,14 +44,12 @@ const Overview = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 `;
 
 const Button = styled(BaseButton)`
   width: 40%;
-  position: absolute;
-  bottom: 20%;
 `;
 
 export { Main, Header, Poster, Title, Overview, ButtonContainer, Button };

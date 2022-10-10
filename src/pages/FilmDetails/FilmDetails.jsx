@@ -40,7 +40,7 @@ export default function FilmDetails() {
     fetchData();
   }, []);
 
-  async function addFilmToUserList() {
+  async function addFilmToList(list) {
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo?.token || ''}`,
@@ -56,7 +56,7 @@ export default function FilmDetails() {
     };
 
     try {
-      await api.post('/userlist', body, config);
+      await api.post(`${list}`, body, config);
       alert('Added to your list!');
     } catch (error) {
       alert(error?.response?.data);
@@ -95,7 +95,10 @@ export default function FilmDetails() {
           <HorizontalBorder />
           <br />
           <ButtonContainer>
-            <Button onClick={addFilmToUserList}>Watched!</Button>
+            <Button onClick={() => addFilmToList('userlist')}>Watched!</Button>
+            <Button onClick={() => addFilmToList('watchlist')}>
+              Add to watchlist!
+            </Button>
           </ButtonContainer>
         </>
       );
