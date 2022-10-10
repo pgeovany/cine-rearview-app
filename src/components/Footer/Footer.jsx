@@ -1,8 +1,9 @@
 import { useLocation, Link } from 'react-router-dom';
 import { GoSearch } from 'react-icons/go';
 import { BsFilm } from 'react-icons/bs';
-import { FiEye, FiBookOpen } from 'react-icons/fi';
+import { FiEye } from 'react-icons/fi';
 import { Container, IconContainer } from './style';
+// import { FiBookOpen } from 'react-icons/fi';
 
 export default function Footer() {
   const location = useLocation().pathname;
@@ -12,12 +13,12 @@ export default function Footer() {
     if (render) {
       return (
         <Container>
-          <Link to="/reviews">
+          {/* <Link to="/reviews">
             <IconContainer displayingPage={location === '/reviews'}>
               <FiBookOpen size={22} />
               <p>Reviews</p>
             </IconContainer>
-          </Link>
+          </Link> */}
           <Link to="/watchlist">
             <IconContainer displayingPage={location === '/watchlist'}>
               <FiEye size={26} />
