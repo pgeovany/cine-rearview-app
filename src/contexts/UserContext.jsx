@@ -20,7 +20,7 @@ export function UserContextProvider({ children }) {
 
       setUserInfo(response.data);
       setIsAuthenticated(true);
-      navigate('/search', { replace: true });
+      navigate('/my-list', { replace: true });
     } catch (error) {
       disableInput(false);
       errorAlert(error?.response?.data);
