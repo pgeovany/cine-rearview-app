@@ -7,6 +7,7 @@ import api from '../../services/api';
 export default function Watchlist() {
   const [films, setFilms] = useState(null);
   const { userInfo } = useContext(UserContext);
+  const [updateList, setUpdateList] = useState(true);
 
   useEffect(() => {
     const config = {
@@ -25,7 +26,22 @@ export default function Watchlist() {
     }
 
     fetchData();
-  }, []);
+  }, [updateList]);
+
+  async function removeFilm(id) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo?.token || ''}`,
+      },
+    };
+
+    try {
+      await api.delete(`watchlist/${id}`, config);
+      setUpdateList(!updateList);
+    } catch (error) {
+      alert(error?.response?.data);
+    }
+  }
 
   function genUserWatchlist() {
     if (userInfo && films) {
@@ -36,9 +52,11 @@ export default function Watchlist() {
             {films.map((film) => (
               <FilmPoster
                 key={film.id}
+                id={film.id}
                 originalId={film.originalId}
                 posterUrl={film.posterUrl}
                 title={film.title}
+                removeFilm={removeFilm}
               />
             ))}
           </Main>
