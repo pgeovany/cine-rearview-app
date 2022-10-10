@@ -5,6 +5,7 @@ import { UserContext } from '../../contexts/UserContext';
 import api from '../../services/api';
 import errorAlert from '../../utils/CustomAlerts/errorAlert';
 import successAlert from '../../utils/CustomAlerts/successAlert';
+import Loader from '../../components/Loader/Loader';
 
 export default function UserList() {
   const [films, setFilms] = useState(null);
@@ -47,7 +48,7 @@ export default function UserList() {
   }
 
   function genUserList() {
-    if (userInfo && films) {
+    if (films) {
       return (
         <>
           <Header>{`My films (${films.length})`}</Header>
@@ -68,8 +69,8 @@ export default function UserList() {
     }
     return (
       <>
-        <Header>Loading</Header>
-        <Main>loading</Main>
+        <Header>Loading...</Header>
+        <Loader />
       </>
     );
   }
