@@ -1,7 +1,9 @@
 # Cine Rearview
 An app for cinema enthusiasts
 <p align="center">
-  <img  src="https://cdn-icons-png.flaticon.com/512/745/745752.png" height="300px">
+  <a href="http://cine-rearview.vercel.app/">
+    <img src="https://cdn-icons-png.flaticon.com/512/745/745752.png" height="300px">
+  <a/>
 </p>
 <h1 align="center">
   Cine Rearview
