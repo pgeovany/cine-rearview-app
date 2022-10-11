@@ -30,7 +30,7 @@ And something I have always wanted to do was to keep track of which (and how man
 # Features
 
 - Search for films
-- See details of a film, like directors, release date, genres, overview, runtime, etc
+- See details of a film: directors, release date, genres, synopsis, runtime, etc
 - Add films to your watched films list
 - Add films to your watchlist
 
